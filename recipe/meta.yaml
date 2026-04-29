@@ -8,7 +8,7 @@ package:
 source:
   - url: https://github.com/pybamm-team/{{ name }}/archive/v{{ version }}.tar.gz
     sha256: dc29a7d9765e85a508c2fa49ffc790f4e538ba6aea4a6da54b1eb179ab3668a3
-  - patches:
+    patches:
     # use conda-forge CasADi
     - 0001-Fix-USE_PYTHON_CASADI.patch
     # remove CXX11 ABI definition to avoid incompatibility
@@ -17,8 +17,7 @@ source:
     - 0003-Fix-Windows-cmake-prefix-path.patch
  
 build:
-  number: 1
-  skip: true
+  number: 2
   script:
     # it is recommended to use the llvm-openmp package on windows
     # as vcomp14 is not updated by Microsoft anymore
