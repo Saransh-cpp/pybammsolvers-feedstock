@@ -1,12 +1,15 @@
-{% set name = "pybammsolvers" %}
-{% set version = "0.7.0" %}
+schema_version: 1
+
+context:
+  name: pybammsolvers
+  version: 0.7.0
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: ${{ name|lower }}
+  version: ${{ version }}
 
 source:
-  url: https://github.com/pybamm-team/{{ name }}/archive/v{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
   sha256: dc29a7d9765e85a508c2fa49ffc790f4e538ba6aea4a6da54b1eb179ab3668a3
   patches:
     # use conda-forge CasADi
@@ -17,14 +20,19 @@ source:
     - 0003-Fix-Windows-cmake-prefix-path.patch
 
 build:
-  number: 3
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 4
+  script:
+    # it is recommended to use the llvm-openmp package on windows
+    # as vcomp14 is not updated by Microsoft anymore
+    - if: win
+      then: set "CXXFLAGS=%CXXFLAGS% /openmp:llvm"
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ stdlib("c") }}
-    - {{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
     - cmake
     - make
   host:
@@ -37,24 +45,24 @@ requirements:
     # need sundials 7.6+ for openmp support on osx builds
     # remove once there is a migrator for sundials 7.7
     - sundials ==7.7.*
-    - llvm-openmp  # [not linux]
-    - libgomp  # [linux]
+    - if not linux:
+      then: llvm-openmp
+    - if linux:
+      then: libgomp
   run:
     - python
     - casadi
     - numpy
 
 test:
-  imports:
-    - pybammsolvers
-  commands:
-    - pip check
-  requires:
-    - pip
+  - python:
+      imports:
+        - pybammsolvers
+      pip_check: true
 
 about:
-  home: https://github.com/pybamm-team/pybammsolvers
   summary: Python interface for the IDAKLU solver
+  homepage: https://github.com/pybamm-team/pybammsolvers
   license: BSD-3-Clause
   license_file: LICENSE
 
