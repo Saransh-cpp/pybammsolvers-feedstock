@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
-  sha256: dc29a7d9765e85a508c2fa49ffc790f4e538ba6aea4a6da54b1eb179ab3668a3
+  sha256: 53f56f879e3f096327d36ed4c6d93dd9e32d7443a1c08c7cc24b789d0440c427
   patches:
     # use conda-forge CasADi
     - 0001-Fix-USE_PYTHON_CASADI.patch
