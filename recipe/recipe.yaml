@@ -45,9 +45,9 @@ requirements:
     # need sundials 7.6+ for openmp support on osx builds
     # remove once there is a migrator for sundials 7.7
     - sundials ==7.7.*
-    - if not linux:
+    - if: not linux
       then: llvm-openmp
-    - if linux:
+    - if: linux
       then: libgomp
   run:
     - python
