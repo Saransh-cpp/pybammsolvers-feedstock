@@ -17,7 +17,7 @@ source:
     - 0003-Fix-Windows-cmake-prefix-path.patch
  
 build:
-  number: 0
+  number: 1
   skip: true   # [py>314]
   script:
     # it is recommended to use the llvm-openmp package on windows
