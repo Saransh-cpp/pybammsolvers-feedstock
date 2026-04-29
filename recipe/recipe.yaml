@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: pybammsolvers
-  version: 0.7.0
+  version: "0.8.0"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://github.com/pybamm-team/${{ name }}/archive/v${{ version }}.tar.gz
-  sha256: dc29a7d9765e85a508c2fa49ffc790f4e538ba6aea4a6da54b1eb179ab3668a3
+  sha256: c06c030f67b38e4c7047f3add31e611f8ade6508d8fd1f456ae1fabafbe441b6
   patches:
     # use conda-forge CasADi
     - 0001-Fix-USE_PYTHON_CASADI.patch
@@ -20,14 +20,14 @@ source:
     - 0003-Fix-Windows-cmake-prefix-path.patch
 
 build:
-  number: 4
+  number: 0
   script:
     # it is recommended to use the llvm-openmp package on windows
     # as vcomp14 is not updated by Microsoft anymore
     - if: win
       then: set "CXXFLAGS=%CXXFLAGS% /openmp:llvm"
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  
+
 requirements:
   build:
     - ${{ compiler('c') }}
@@ -47,8 +47,7 @@ requirements:
     - sundials 7.7.*
     - if: not linux
       then: llvm-openmp
-    - if: linux
-      then: libgomp
+      else: libgomp
   run:
     - python
     - casadi
