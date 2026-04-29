@@ -54,7 +54,7 @@ requirements:
     - casadi
     - numpy
 
-test:
+tests:
   - python:
       imports:
         - pybammsolvers
