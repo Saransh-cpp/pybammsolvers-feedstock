@@ -20,7 +20,7 @@ source:
     - 0003-Fix-Windows-cmake-prefix-path.patch
 
 build:
-  number: 4
+  number: 5
   script:
     # it is recommended to use the llvm-openmp package on windows
     # as vcomp14 is not updated by Microsoft anymore
