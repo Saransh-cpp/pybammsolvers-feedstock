@@ -18,7 +18,7 @@ source:
  
 build:
   number: 1
-  skip: true   # [py>314]
+  skip: true
   script:
     # it is recommended to use the llvm-openmp package on windows
     # as vcomp14 is not updated by Microsoft anymore
