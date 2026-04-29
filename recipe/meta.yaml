@@ -18,11 +18,7 @@ source:
 
 build:
   number: 3
-  script:
-    # it is recommended to use the llvm-openmp package on windows
-    # as vcomp14 is not updated by Microsoft anymore
-    - set "CXXFLAGS=%CXXFLAGS% /openmp:llvm"  # [win]
-    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   
 requirements:
   build:
