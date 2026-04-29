@@ -2,14 +2,14 @@ schema_version: 1
 
 context:
   name: pybammsolvers
-  version: "0.8.0"
+  version: "0.8.1"
 
 package:
   name: ${{ name|lower }}
   version: ${{ version }}
 
 source:
-  url: https://github.com/pybamm-team/${{ name }}/archive/v${{ version }}.tar.gz
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
   sha256: c06c030f67b38e4c7047f3add31e611f8ade6508d8fd1f456ae1fabafbe441b6
   patches:
     # use conda-forge CasADi
