@@ -9,7 +9,7 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://github.com/pybamm-team/${{ name }}/archive/v${{ version }}.tar.gz
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pybammsolvers-${{ version }}.tar.gz
   sha256: 4cd500aba3be82cfb0ccf302ed4c0a46c24523ed8ed66f9c5050b59171e7134a
   patches:
     # use conda-forge CasADi
