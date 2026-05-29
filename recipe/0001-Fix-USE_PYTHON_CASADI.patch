@@ -1,17 +1,18 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 2b9b025..e3ed91d 100644
+index 2b9b025..a6ded08 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -91,12 +91,8 @@ pybind11_add_module(idaklu
+@@ -91,12 +91,7 @@ pybind11_add_module(idaklu
  )
  
  if (NOT DEFINED USE_PYTHON_CASADI)
 -    # Windows uses vcpkg for CasADi (no pip wheel exists); Linux/macOS use pip.
-     if (WIN32)
-         set(USE_PYTHON_CASADI FALSE)
+-    if (WIN32)
+-        set(USE_PYTHON_CASADI FALSE)
 -    else()
 -        set(USE_PYTHON_CASADI TRUE)
 -    endif()
++    set(USE_PYTHON_CASADI FALSE)
  endif ()
  
  if (${USE_PYTHON_CASADI})
