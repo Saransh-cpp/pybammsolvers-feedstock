@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: pybammsolvers
-  version: "0.8.1"
+  version: "0.8.2"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://github.com/pybamm-team/${{ name }}/archive/v${{ version }}.tar.gz
-  sha256: eee29f98be516468e8ffa36edfd6e522af4cdef6996efd2acfca08fc9bf87118
+  sha256: 4cd500aba3be82cfb0ccf302ed4c0a46c24523ed8ed66f9c5050b59171e7134a
   patches:
     # use conda-forge CasADi
     - 0001-Fix-USE_PYTHON_CASADI.patch
@@ -37,9 +37,9 @@ requirements:
     - make
   host:
     - python
-    - setuptools >=71
+    - scikit-build-core >=0.10
     - casadi
-    - pybind11
+    - pybind11 >=3.0.1
     - pip
     - suitesparse
     # need sundials 7.6+ for openmp support on osx builds
