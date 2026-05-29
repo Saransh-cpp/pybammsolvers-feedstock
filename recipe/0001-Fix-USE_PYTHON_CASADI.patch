@@ -1,13 +1,17 @@
-diff --git a/setup.py b/setup.py
-index fa61a34..a31a6fb 100644
---- a/setup.py
-+++ b/setup.py
-@@ -18,7 +18,7 @@ default_lib_dir = (
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 2b9b025..e3ed91d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -91,12 +91,8 @@ pybind11_add_module(idaklu
+ )
  
- INCLUDE_DIRS = [str(Path(default_lib_dir) / "include"), pybind11.get_include()]
+ if (NOT DEFINED USE_PYTHON_CASADI)
+-    # Windows uses vcpkg for CasADi (no pip wheel exists); Linux/macOS use pip.
+     if (WIN32)
+         set(USE_PYTHON_CASADI FALSE)
+-    else()
+-        set(USE_PYTHON_CASADI TRUE)
+-    endif()
+ endif ()
  
--USE_PYTHON_CASADI = False if system() == "Windows" else True
-+USE_PYTHON_CASADI = False
- 
- # ---------- set environment variables for vcpkg on Windows ----------------------------
- 
+ if (${USE_PYTHON_CASADI})

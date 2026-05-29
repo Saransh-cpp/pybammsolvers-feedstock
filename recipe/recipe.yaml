@@ -37,9 +37,9 @@ requirements:
     - make
   host:
     - python
-    - setuptools >=71
+    - scikit-build-core >=0.10
     - casadi
-    - pybind11
+    - pybind11 >=3.0.1
     - pip
     - suitesparse
     # need sundials 7.6+ for openmp support on osx builds
